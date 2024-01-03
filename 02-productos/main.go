@@ -5,7 +5,7 @@ import "fmt"
 func factory(typeProd ProductType, price float64) Product {
 	switch typeProd {
 	case SMALL:
-		return SmallProduct{price}
+		return SmallProduct{price} // SmallProduct "implementa" la interface Product
 	case MEDIUM:
 		return MediumProduct{price}
 	case LARGE:
@@ -17,13 +17,13 @@ func factory(typeProd ProductType, price float64) Product {
 
 func main() {
 
-	var products []Product
-	products = append(products, factory(SMALL, 100.0))
-	products = append(products, factory(MEDIUM, 100.0))
-	products = append(products, factory(LARGE, 100.0))
+	var prod1 Product = factory(SMALL, 100.0) // prod1 en realidad es una instancia de SmallProduct
+	fmt.Println(prod1.Price())
 
-	for _, prod := range products {
-		fmt.Println(prod.Price())
-	}
+	var prod2 Product = factory(MEDIUM, 100.0)
+	fmt.Println(prod2.Price())
+
+	var prod3 Product = factory(LARGE, 100.0)
+	fmt.Println(prod3.Price())
 
 }
